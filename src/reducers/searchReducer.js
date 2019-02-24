@@ -13,7 +13,7 @@ const INITIAL_STATE = {
   isInitialLoad: true,
   dataSource: [],
   buttonPressedValue: false,
-  
+
   oldDataSource: []
 };
 export default (state = INITIAL_STATE, action) => {

@@ -1,10 +1,10 @@
 import React from 'react';
 import {View} from 'react-native';
-
+import styles from'../styles';
 const CardSection=(props)=>
 {
   return(
-<View style={styles.containerStyle}>
+<View style={styles.cardSectionContainerStyle}>
 {props.children}
 
   </View>
@@ -12,18 +12,18 @@ const CardSection=(props)=>
   );
 }
 
-const styles={
+// const styles={
 
-  containerStyle:{
-    flex:1,
-    borderBottomWidth:1,
-padding:5,
-backgroundColor:'#fff',
-justifyContent:'flex-start',
-flexDirection:'row',
-borderColor:'#ddd',
-position:'relative'
-  }
-}
+//   cardSectionContainerStyle:{
+//     flex:1,
+//     borderBottomWidth:1,
+// padding:5,
+// backgroundColor:'white',
+// justifyContent:'flex-start',
+// flexDirection:'row',
+// borderColor:'#ddd',
+// position:'relative'
+//   }
+// }
 
 export {CardSection};

@@ -23,7 +23,7 @@ export const onButtonPress = (
   oldDataSource
 ) => {
   if (dataSource !== null && !buttonPressedValue) {
-    console.log("inside if");
+  
     let sortDataSource = sortDataSourceFunction(dataSource, buttonPressedValue);
     return {
       type: SORT,
@@ -32,7 +32,8 @@ export const onButtonPress = (
         buttonPressedValue: buttonPressedValue
       }
     };
-  } else {
+  } else  {
+
     return {
       type: UNSORT,
       payload: {
