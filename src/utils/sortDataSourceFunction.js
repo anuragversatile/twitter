@@ -1,9 +1,12 @@
 var tweeterCreateAtToJSDate=require('./tweeterCreateAtToJSDate')
+var sortFunction=require('./sortFunction')
 sortDataSourceFunction=(dataSource,buttonPressedValue)=>{
 console.log("VALUE OF VBUTTON",buttonPressedValue)
 console.log("indise sort function with data",dataSource)
 if (dataSource !== null && !buttonPressedValue) {
   console.log("VALUE OF VBUTTONsdsfgdss",buttonPressedValue)
+
+ console.log("unssorted data",JSON.stringify(dataSource))
 dataSource.map(elem => {
   let retweet_score = 0;
   let favorite_score = 0;
@@ -49,30 +52,12 @@ dataSource.map(elem => {
   elem["popularityIndex"] = popularityIndex;
 });
 // console.log("With popularityIndex", JSON.stringify(dataSource));
-let  sortDataSource=dataSource 
+
 
 //  console.log("th sort data source is",sortDataSource)
-sortDataSource.sort((value1, value2) => {
-    // console.log("VALUE@_VALUE 1", value1.popularityIndex);
-    // console.log("VALUE@_VALUE 2", value2.popularityIndex);
-    // console.log(
-    //   "VALUE@_VALUE 12",
-    //   value2.popularityIndex - value1.popularityIndex
-    // );
-    if(value1.retweet_count===value2.retweet_count)
-     {
-       if(value1.favorite_count===value2.favorite_count)
-       {
-         return value2.popularityIndex-value1.popularityIndex
-       }
-       else{
-         return value2.favorite_count-value1.favorite_count
-       }
-     }
-     else{
-    return value2.retweet_count - value1.retweet_count;
-  }
-  });
+let sortDataSource=sortFunction(dataSource);
+
+ console.log("sorted data",JSON.stringify(sortDataSource))
 
 return sortDataSource
 }

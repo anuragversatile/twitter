@@ -8,7 +8,8 @@ import {
   FlatList,
   Image,
   Alert,
-  TouchableOpacity
+
+  TouchableOpacity,Dimensions
 } from "react-native";
 import { SearchBar, Avatar, Button } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -16,6 +17,7 @@ import sortDataSourceFunction from "./utils/sortDataSourceFunction";
 import { Card, CardSection } from "./components/common";
 import { searchQuery, onEnterPress, onButtonPress } from "./actions";
 import { connect } from "react-redux";
+import Carousel from 'react-native-snap-carousel';
 
 class Tweet extends React.Component {
   onSearchQueryChanged(text) {
@@ -47,7 +49,38 @@ class Tweet extends React.Component {
       />
     );
   };
+//   _renderItems ({item, index}) {
+//     return (
+//       <View style={{ flex: 1, flexDirection: "row",alignContent:'center' }}>
+//       <CardSection>
+//         <Avatar
+//           rounded
+//           source={{
+//             uri: item.user.profile_image_url
+//           }}
+//           size="large"
+//         />
 
+//         <View style={{ flex: 1, flexDirection: "column" ,backgroundColor:'grey'}}>
+//           <View style={{ flex: 1 }}>
+//             <Text style={{ fontWeight: "bold" }}> {item.user.name}</Text>
+//             <Text> @{item.user.screen_name}</Text>
+//           </View>
+
+//           <Text style={styles.textView}>{item.full_text}</Text>
+//           <View style={{ flex: 1, flexDirection: "row" }}>
+//             <Text> count {item.retweet_count}</Text>
+//             <Text>
+//               {" "}
+//               favorite
+//               {item.favorite_count}
+//             </Text>
+//           </View>
+//         </View>
+//       </CardSection>
+//     </View>
+//     );
+// }
   _renderItem = ({ item }) => (
     <View style={{ flex: 1, flexDirection: "row" }}>
       <CardSection>
@@ -57,6 +90,7 @@ class Tweet extends React.Component {
             uri: item.user.profile_image_url
           }}
           size="large"
+        
         />
 
         <View style={{ flex: 1, flexDirection: "column" }}>
@@ -67,10 +101,13 @@ class Tweet extends React.Component {
 
           <Text style={styles.textView}>{item.full_text}</Text>
           <View style={{ flex: 1, flexDirection: "row" }}>
-            <Text> count {item.retweet_count}</Text>
+            <Text>  
+            <Image source={require('./resources/images/retweets.png')}/>
+            {item.retweet_count}
+            </Text>
             <Text>
               {" "}
-              favorite
+              <Image source={require('./resources/images/favs.png')}/>
               {item.favorite_count}
             </Text>
           </View>
@@ -85,7 +122,7 @@ class Tweet extends React.Component {
     return (
       <Card>
         <SearchBar
-          placeholder="Enter User Name"
+          placeholder="Search Tweet"
           onChangeText={this.onSearchQueryChanged.bind(this)}
           value={this.props.searchText}
           onSubmitEditing={this.onEnterPressAction.bind(this)}
@@ -108,7 +145,19 @@ class Tweet extends React.Component {
             extraData={this.props}
           />
         </View>
+{/* <CardSection>
+<Carousel
+ref={(c) => { this._carousel = c; }}
+data={this.props.dataSource}
+renderItem={this._renderItems.bind(this)}
+sliderWidth={sliderWidth}
+itemWidth={itemWidth}
+
+/>
+</CardSection> */}
       </Card>
+
+
     );
   }
 }
@@ -152,7 +201,18 @@ const styles = StyleSheet.create({
     textAlignVertical: "center",
     padding: 10,
     color: "#000"
-  }
+  },
+  slide: {
+    width: itemWidth,
+    height: itemHeight,
+    paddingHorizontal: horizontalMargin
+    // other styles for the item container
+},
+slideInnerContainer: {
+    width: slideWidth,
+    flex: 1
+    // other styles for the inner container
+}
 });
 
 export default connect(
@@ -163,3 +223,11 @@ export default connect(
     onButtonPress
   }
 )(Tweet);
+
+const horizontalMargin = 20;
+const slideWidth = 280;
+
+const sliderWidth = Dimensions.get('window').width;
+const itemWidth = slideWidth + horizontalMargin ;
+const itemHeight = 100;
+

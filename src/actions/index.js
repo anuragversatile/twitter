@@ -1,4 +1,14 @@
-import { SEARCH_QUERY, ENTER_PRESS, SORT, UNSORT, SUCCESS } from "./types";
+import {
+  SEARCH_QUERY,
+  ENTER_PRESS,
+  SORT,
+  AUTHHEADER,
+  UNSORT,
+  SUCCESS,
+  URI,
+  FETCHMETHOD,
+  PARAMETER
+} from "./types";
 import sortDataSourceFunction from "../utils/sortDataSourceFunction";
 export const searchQuery = text => {
   return {
@@ -35,12 +45,11 @@ export const onButtonPress = (
 
 export const onEnterPress = query => {
   return dispatch => {
-    let urls = `https://api.twitter.com/1.1/search/tweets.json?q=${query}&tweet_mode=extended&count=10&result_type=recent`;
+    let urls = `${URI}${query}${PARAMETER}`;
     fetch(urls, {
-      method: "GET",
+      method: FETCHMETHOD,
       headers: {
-        Authorization:
-          "bearer AAAAAAAAAAAAAAAAAAAAAFr09QAAAAAAehMEsbgXtRoNY3cGzfE8cjR%2FnvI%3DjCumyZokW0eHLWyTeuF1jWW1Lo5Rv6wzt4ALeDF8bQlbSbSzKo"
+        Authorization: AUTHHEADER
       }
     })
       .then(function(response) {
@@ -55,4 +64,3 @@ export const onEnterPress = query => {
       .catch(error => console.log("AdSdfsdfdsfs", error));
   };
 };
-

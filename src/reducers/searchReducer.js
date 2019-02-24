@@ -1,35 +1,53 @@
-import { SEARCH_QUERY ,ENTER_PRESS,SORT,UNSORT,SUCCESS} from "../actions/types";
+import {
+  SEARCH_QUERY,
+  ENTER_PRESS,
+  SORT,
+  UNSORT,
+  SUCCESS
+} from "../actions/types";
 
-
-const INITIAL_STATE={
- searchText:"", isLoading: true,
-dataSource:[],
-buttonPressedValue:false,
- isInitialLoad: true,
- oldDataSource:[]
-}
-export default (state=INITIAL_STATE,action)=>{
-  switch(action.type){
-  case SEARCH_QUERY:
+const INITIAL_STATE = {
+  searchText: "",
+  isLoading: true,
+  isTweetFound: false,
+  isInitialLoad: true,
+  dataSource: [],
+  buttonPressedValue: false,
   
-  return { ...state, searchText: action.payload };
-  case ENTER_PRESS:
-  return{
-    ...state, isInitialLoad: false, isLoading: true 
-   
+  oldDataSource: []
+};
+export default (state = INITIAL_STATE, action) => {
+  switch (action.type) {
+    case SEARCH_QUERY:
+      return { ...state, searchText: action.payload };
+    case ENTER_PRESS:
+      return {
+        ...state,
+        isInitialLoad: false,
+        isLoading: true
+      };
+    case SORT:
+      return {
+        ...state,
+        dataSource: action.payload.sortDataSource,
+        buttonPressedValue: !action.payload.buttonPressedValue
+      };
+    case UNSORT:
+      return {
+        ...state,
+        dataSource: action.payload.oldDataSource,
+        buttonPressedValue: !action.payload.buttonPressedValue
+      };
+    case SUCCESS:
+      return {
+        ...state,
+        dataSource: action.payload,
+        isLoading: false,
+        isTweetFound: true,
+        buttonPressedValue: false,
+        oldDataSource: action.payload
+      };
+    default:
+      return state;
   }
-  case SORT:
- 
-  return{...state,dataSource:action.payload.sortDataSource,buttonPressedValue:!action.payload.buttonPressedValue}
-  case UNSORT:
-  return{
-...state,dataSource:action.payload.oldDataSource,buttonPressedValue:!action.payload.buttonPressedValue
-  }
-  case SUCCESS:
-      return {...state,dataSource:action.payload,isLoading: false,
-        isUserFound: true,buttonPressedValue: false,
-        oldDataSource: action.payload};
-  default:
-  return  state
-  }
-}
+};
