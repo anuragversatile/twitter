@@ -1,10 +1,34 @@
+import { SEARCH_QUERY ,ENTER_PRESS,SORT,UNSORT,SUCCESS} from "../actions/types";
+
+
 const INITIAL_STATE={
-  query:""
+ searchText:"", isLoading: true,
+dataSource:[],
+buttonPressedValue:false,
+ isInitialLoad: true,
+ oldDataSource:[]
 }
 export default (state=INITIAL_STATE,action)=>{
   switch(action.type){
-  case 'SEARCH':
-  return state
+  case SEARCH_QUERY:
+  
+  return { ...state, searchText: action.payload };
+  case ENTER_PRESS:
+  return{
+    ...state, isInitialLoad: false, isLoading: true 
+   
+  }
+  case SORT:
+ 
+  return{...state,dataSource:action.payload.sortDataSource,buttonPressedValue:!action.payload.buttonPressedValue}
+  case UNSORT:
+  return{
+...state,dataSource:action.payload.oldDataSource,buttonPressedValue:!action.payload.buttonPressedValue
+  }
+  case SUCCESS:
+      return {...state,dataSource:action.payload,isLoading: false,
+        isUserFound: true,buttonPressedValue: false,
+        oldDataSource: action.payload};
   default:
   return  state
   }

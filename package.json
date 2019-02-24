@@ -7,13 +7,16 @@
     "test": "jest"
   },
   "dependencies": {
+    "querystring": "^0.2.0",
     "react": "16.6.3",
     "react-native": "0.58.4",
     "react-native-elements": "^1.0.0",
     "react-native-vector-icons": "^6.3.0",
     "react-redux": "^6.0.0",
     "redux": "^4.0.1",
-    "redux-saga": "^1.0.1"
+    "redux-saga": "^1.0.1",
+    "redux-thunk": "^2.3.0",
+    "twitter-node-client": "0.0.6"
   },
   "devDependencies": {
     "babel-core": "7.0.0-bridge.0",
