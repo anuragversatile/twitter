@@ -12,18 +12,4 @@ const CardSection=(props)=>
   );
 }
 
-// const styles={
-
-//   cardSectionContainerStyle:{
-//     flex:1,
-//     borderBottomWidth:1,
-// padding:5,
-// backgroundColor:'white',
-// justifyContent:'flex-start',
-// flexDirection:'row',
-// borderColor:'#ddd',
-// position:'relative'
-//   }
-// }
-
 export {CardSection};

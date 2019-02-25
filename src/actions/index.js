@@ -62,6 +62,6 @@ export const onEnterPress = query => {
           payload: myJson.statuses
         })
       )
-      .catch(error => console.log("AdSdfsdfdsfs", error));
+      .catch(error => console.log("Error", error));
   };
 };
