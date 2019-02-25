@@ -5,7 +5,9 @@ const styles = StyleSheet.create({
     fontWeight: "400"
   },
   rowStyle:{
-    flex: 1, flexDirection: "row" 
+    flex: 1, flexDirection: "row" ,
+    color:'black',
+    flexWrap:'wrap'
   },
   columnStyle:{
     flex:1,
@@ -42,7 +44,7 @@ const styles = StyleSheet.create({
   },
   cardContainerStyle:{
     borderWidth:1,
-    borderRadius:2,
+    borderRadius:5,
     borderColor:'#ddd',
     borderBottomWidth:0,
     shadowColor:'#000',
@@ -59,12 +61,18 @@ const styles = StyleSheet.create({
 cardSectionContainerStyle:{
   flex:1,
   borderBottomWidth:1,
-padding:5,
+padding:12,
+elevation:5,
+shadowColor: 'rgba(0,0,0,0.5)',
+shadowOffset: { width: 0, height: 2 },
+shadowOpacity: 0.5,
+shadowRadius: 2,
 backgroundColor:'white',
 justifyContent:'flex-start',
 flexDirection:'row',
 borderColor:'#ddd',
-position:'relative'
+position:'relative',
+borderRadius:5,
 },
 
 headerViewStyle:{
@@ -83,8 +91,16 @@ headerViewStyle:{
 },
 headerTextStyle: {
  fontSize:20,
- fontWeight:'600'
-}
+ fontWeight:'600',
+ color:'white',
+
+ justifyContent:'center'
+},
+flexView: {
+  flex: 1,
+  justifyContent: "center",
+  alignItems: "center"
+},
 
   
  

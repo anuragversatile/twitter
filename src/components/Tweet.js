@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Platform,
   FlatList,
+  ActivityIndicator,
   Image
 } from "react-native";
 import { SearchBar, Avatar, Button } from "react-native-elements";
@@ -37,8 +38,10 @@ class Tweet extends React.Component {
   }
 
   _renderItem = ({ item }) => {
-    const { rowStyle, columnStyle } = styles;
+    const { rowStyle, columnStyle,flexView } = styles;
+
     return (
+      
       <View style={rowStyle}>
         <Card>
           <CardSection>
@@ -52,19 +55,19 @@ class Tweet extends React.Component {
 
             <View style={columnStyle}>
               <View style={rowStyle}>
-                <Text style={{ fontWeight: "bold" }}> {item.user.name}</Text>
-                <Text> @{item.user.screen_name}</Text>
+                <Text style={{fontWeight: "bold" ,color:'black'}}> {item.user.name}</Text>
+                <Text style={{color:'grey',fontSize:12}}> @{item.user.screen_name}</Text>
               </View>
 
               <Text style={styles.textView}>{item.full_text}</Text>
               <View style={rowStyle}>
-                <Text>
+                <Text style={{color:'black'}}>
                   <Image source={require("../resources/images/retweets.png")} />
                   {item.retweet_count}
                 </Text>
-                <Text>
+                <Text style={{color:'black'}} >
                   {" "}
-                  <Image source={require("../resources/images/favs.png")} />
+                  <Image  source={require("../resources/images/favs.png")} />
                   {item.favorite_count}
                 </Text>
               </View>
@@ -88,9 +91,11 @@ class Tweet extends React.Component {
           lightTheme={true}
           inputContainerStyle={backColor}
           inputStyle={textColor}
+          returnKeyType="search"
+          autoCorrect={false}
         />
 
-        <Button title="Filter" onPress={this.onButtonPressAction} />
+        <Button title="Sort By Popularity" onPress={this.onButtonPressAction} />
 
         <View style={styles.MainContainer}>
           <FlatList
@@ -109,7 +114,8 @@ const mapStateToProps = state => {
     searchText: state.search.searchText,
     dataSource: state.search.dataSource,
     buttonPressedValue: state.search.buttonPressedValue,
-    oldDataSource: state.search.oldDataSource
+    oldDataSource: state.search.oldDataSource,
+    isLoading: state.search.isLoading
   };
 };
 
