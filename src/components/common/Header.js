@@ -1,23 +1,17 @@
-import React from'react';
+import React from "react";
 
-import {Text,View} from'react-native';
-import styles from'../styles';
+import { Text, View } from "react-native";
+import styles from "../styles";
 //only the root component uses appregistry
-const Header=(props)=>
-{
+const Header = props => {
   //why this
 
-  const {headerTextStyle,headerViewStyle}=styles;
+  const { headerTextStyle, headerViewStyle } = styles;
   return (
-<View style={headerViewStyle}>
-   <Text style={headerTextStyle} > 
+    <View style={headerViewStyle}>
+      <Text style={headerTextStyle}>{props.headerText} </Text>
+    </View>
+  );
+};
 
-   {props.headerText} </Text>
-  </View>
-  )
-}
-
-export { Header};
-
-
-
+export { Header };

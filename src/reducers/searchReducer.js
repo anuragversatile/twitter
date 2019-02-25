@@ -3,7 +3,8 @@ import {
   ENTER_PRESS,
   SORT,
   UNSORT,
-  SUCCESS
+  SUCCESS,
+  ISINITIAL
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -37,6 +38,11 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         dataSource: action.payload.oldDataSource,
         buttonPressedValue: !action.payload.buttonPressedValue
+      };
+    case ISINITIAL:
+      return {
+        ...state,
+        isInitialLoad: action.payload.isInitialLoad
       };
     case SUCCESS:
       return {

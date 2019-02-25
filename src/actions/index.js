@@ -7,7 +7,8 @@ import {
   SUCCESS,
   URI,
   FETCHMETHOD,
-  PARAMETER
+  PARAMETER,
+  ISINITIAL
 } from "./types";
 import sortDataSourceFunction from "../utils/sortDataSourceFunction";
 export const searchQuery = text => {
@@ -23,7 +24,6 @@ export const onButtonPress = (
   oldDataSource
 ) => {
   if (dataSource !== null && !buttonPressedValue) {
-  
     let sortDataSource = sortDataSourceFunction(dataSource, buttonPressedValue);
     return {
       type: SORT,
@@ -32,8 +32,7 @@ export const onButtonPress = (
         buttonPressedValue: buttonPressedValue
       }
     };
-  } else  {
-
+  } else {
     return {
       type: UNSORT,
       payload: {
@@ -44,6 +43,9 @@ export const onButtonPress = (
   }
 };
 
+export const isInitial = () => {
+  return { type: ISINITIAL, payload: { isInitialLoad: false } };
+};
 export const onEnterPress = query => {
   return dispatch => {
     let urls = `${URI}${query}${PARAMETER}`;

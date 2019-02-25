@@ -9,3 +9,4 @@ export const AUTHHEADER =
 export const URI = "https://api.twitter.com/1.1/search/tweets.json?q=";
 export const PARAMETER = "&tweet_mode=extended&count=10&result_type=recent";
 export const FETCHMETHOD = "GET";
+export const ISINITIAL = "isInitial";

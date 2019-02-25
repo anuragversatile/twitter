@@ -36,8 +36,6 @@ sortDataSourceFunction = (dataSource, buttonPressedValue) => {
 
     let sortDataSource = sortFunction(dataSource);
 
-   
-
     return sortDataSource;
   }
 };
